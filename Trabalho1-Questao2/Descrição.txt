@@ -1,0 +1,6 @@
+Implementar o TAD  lista nãoordenada de  strings com no máximo 10 elementos, cada umcom até 15 caracteres, usando alocação estática/sequencial. 
+Além das operações vistas em sala,o TAD também deve contemplar:
+    Inserir na posição: insira a string na posição indicada. Se a posição não existir na lista, a operação deve indicar falha.
+    Remover menor: remove e retorna a menor string da lista (ordem lexicográfica). No caso de empate (strings iguais), deve-se remover a primeira ocorrência encontrada.
+    Tamanho: retorna o número de elementos da lista.
+    Concatenar: recebe duas listas (L1 e L2) e retorna uma nova lista L3 com os elementos deL1 seguidos dos elementos de L2. As listas originais não devem ser alteradas.

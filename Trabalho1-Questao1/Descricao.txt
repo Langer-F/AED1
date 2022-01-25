@@ -1,0 +1,7 @@
+implementar o TAD  listaordenada crescente  de  caracteres  com no máximo 20 elementos,usando alocação estática/sequencial.
+Além das operações vistas em sala, o TAD também devecontemplar: 
+    Remover vogais: remove todos os elementos da lista que são vogais. 
+    Remover da posição: remove o elemento que se encontra na posição indicada, retornando seu valor. Se a posição não existir na lista, a operação deve indicar falha.
+    Tamanho: retorna o número de elementos da lista
+    Intercalar: recebe duas listas ordenadas (L1 e L2) e retorna uma nova lista L3 formada pelos  elementos de L1 e L2 intercalados, mantendo o critério de ordenação. 
+                As listas originais não devem ser alteradas.
