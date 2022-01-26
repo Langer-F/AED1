@@ -1,0 +1,6 @@
+Implementar, utilizando a alocação dinâmica e o acesso encadeado simples(SEM qualquer técnica especial),
+o TAD lista linear ordenada de alunos, sendo que cadaaluno possui as informações descritas a seguir.
+Nessa implementação a lista segue uma ordenação decrescente pela matrícula. 
+Além das operações básicas(criar_lista, lista_vazia, insere_ord e remove_ord), o TAD também deve contemplar
+a operação get_elem_pos, que retorna  o conteúdo  do elemento na posição indicada, caso ela exista; e apaga_lista, que libera o espaço ocupado por uma instância da lista. 
+Por fim, também desenvolva um programa aplicativo que permitaao usuário  criar,  esvaziar e imprimir  uma lista,  bem como  inserir e remover elementos dessa lista.

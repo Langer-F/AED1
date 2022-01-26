@@ -1,0 +1,9 @@
+Implementar, utilizando  a alocação  dinâmica,   o acesso encadeado COM  nó descritor (nó cabeçalho), 
+o TAD lista linear ordenada de strings, sendo que cada string pode ser formada por, no máximo, 10 caracteres.
+Nessa implementação alista  segue  uma ordenação crescente. Além das  operações básicas 
+(criar_lista,lista_vazia, insere_ord  e remove_ord), o TAD também deve contemplar as operações:
+            get_elem_pos;
+            apaga_lista; 
+            e esvazia_lista, que retorna a lista para o estado de vazia, removendo todos os seus elementos.  
+Por fim, também desenvolva um programa aplicativo que permita ao usuário criar, esvaziar, imprimir 
+e apagar uma lista, bem como inserir e remover elementos dessa lista.
