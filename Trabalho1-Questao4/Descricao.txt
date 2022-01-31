@@ -1,0 +1,6 @@
+Implementar  o TAD  listanão ordenada  de números  inteiros  usando alocação  dinâmica/encadeada  SEM  cabeçalho.   
+Além   das   operações   vistas   em   sala,   o   TAD   também   deve contemplar:
+    Tamanho: retorna o número de elementos da lista
+    Remover maior: remove e retornao maior elemento da lista. No caso de empate, deve-se remover a última ocorrência encontrada.
+    Inverter: recebe uma lista L e retorna uma nova lista L2, formada pelos elementos de L na ordem inversa. A lista original não deve ser alterada.
+    Intercalar: recebe duas listas nao ordenadas e retorna uma nova lista com os elementos dasduas listas de entrada intercalados. As listas originais não devem ser alteradas.
