@@ -6,15 +6,40 @@ struct no{
     struct no* prox;
 };
 
+/*
+Cria lista
+entrada: nenhuma
+pré-condição: nenhuma
+processo: nenhum
+pós condição: nenhum
+saida: NULL
+*/
 Lista cria_lista(){
     return NULL;
 }
 
+/*
+lista_vazia
+entrada: endereço de uma lista
+pré-condição: nenhuma
+processo: verifica se a lista está vazia
+pós condição: nenhuma
+saida: 1 se a lista está vazia, 0 caso contrario
+*/
 int lista_vazia(Lista a){
     if (a!=NULL)
         return 0;
     return 1;
 }
+
+/*
+insere elemento
+entrada: endereço do endereço de uma lista e um valor int
+pré-condição: ter espaço na memoria para alocar um novo no
+processo: insere o elemento no começo da lista
+pós condição: um novo elemneto é inserido na lista
+saida: 1 se sucesso, 0 se falha
+*/
 int insere_elem(Lista *a, int valor){
     Lista b = (struct no*)malloc(sizeof(struct no));
     if (b==NULL)
@@ -30,6 +55,14 @@ int insere_elem(Lista *a, int valor){
     return 1;
 }
 
+/*
+remove elemento
+entrada: endereço do endereço de uma lista um valor int
+pré-condição: a lista nao estar vazia
+processo: remove a primeira ocorrencia do elemento da lista
+pós condição: um elemento é removido da lista
+saida: 1 se sucesso, 0 se falha
+*/
 int remove_elem(Lista *a, int valor){
     if (*a == NULL ) //se a Lista esta vazia FALHA
         return 0;
@@ -39,7 +72,7 @@ int remove_elem(Lista *a, int valor){
         free(aux);
         return 1;
     }
-    while (aux->prox->info != valor && aux->prox!=NULL) //sempre olhando o da frente, por isso aux->prox
+    while (aux->prox!=NULL && aux->prox->info != valor) //sempre olhando o da frente, por isso aux->prox
         aux = aux->prox;
     if (aux->prox == NULL)
         return 0;
@@ -49,11 +82,20 @@ int remove_elem(Lista *a, int valor){
     return 1;
 }
 
-int remove_maior(Lista *a){
+/*
+remove maior
+entrada: endereço do endereço de uma lista e o endereço de um valor int
+pré-condição: a lista nao estar vazia
+processo: remove a ultima ocorrencia do maior elemento da lista e retorna seu valor por referencia
+pós condição: o menor elemento é removido da lista
+saida: 1 se sucesso, 0 se falha
+*/
+int remove_maior(Lista *a,int *valor){
     if (*a == NULL ) //se a Lista esta vazia FALHA
         return 0;
     if ((*a)->prox==NULL){  //se a lista só tem um elemento, remove ele.
         Lista aux = *a;
+        *valor = aux->info;
         free(aux);
         *a = NULL;
         return 1;
@@ -73,10 +115,19 @@ int remove_maior(Lista *a){
         maior=maior->prox;
         aux->prox = aux->prox->prox;
     }
+    *valor = maior->info;
     free(maior);
     return 1;
 }
 
+/*
+get elemento posição
+entrada: endereço da lista, posiçao do elemento e endereço de um int
+pré-condição:a lista nao estar vazia e ser uma posiçao valida
+processo: retorna o elemento na posição n por referencia
+pós condição: nenhuma
+saida: 1 se sucess0, 0 se falha
+*/
 int get_elem_pos(Lista a,int n, int *valor){
     int i;
     Lista aux = a;
@@ -91,6 +142,14 @@ int get_elem_pos(Lista a,int n, int *valor){
     return 1;
 }
 
+/*
+get_tamanho_da_lista
+entrada: endereço de uma lista, endereço de uma variavel int
+pré-condição: nenhuma
+processo: retorna o tamanho da lista por referencia
+pós condição: nenhuma
+saida: nenhuma
+*/
 void get_tamanho_da_lista(Lista a,int *n){
     if (a==NULL){
         *n = 0;
@@ -105,6 +164,14 @@ void get_tamanho_da_lista(Lista a,int *n){
     }
 }
 
+/*
+limpa lista
+entrada: endereço do endereço de uma lista
+pré-condição: a lista nao estar vazia
+processo: limpa a lista, voltando ela para seu estado de vazia
+pós condição: uma lista é limpada
+saida: 1 se sucesso, 0 se falha
+*/
 int limpa_lista(Lista *a){
     if (*a == NULL)
         return 0;
@@ -118,8 +185,16 @@ int limpa_lista(Lista *a){
     return 1;
 }
 
+/*
+Inverter lista
+entrada: endereço de uma lista 'a' e endereço do endereço de uma lista 'b'
+pré-condição: lista 'a' nao estar vazia e lista 'b' estar vazia
+processo: copia a primeira lista na ordem inversa e armazena o resultado na segunda lista
+pós condição: uma lista invertida e copiada em outra lista
+saida: 1 se sucesso, 0 se falha
+*/
 int inverter_lista(Lista a,Lista *b){
-    if (a==NULL||(*b)!=NULL)    //a lista b tem que estar vazia para essa operação funcionar
+    if (a==NULL||(*b)!=NULL)    //lista 'b' tem que estar vazia para essa operação funcionar
         return 0;
     Lista aux = a->prox;
     Lista aux2 = (struct no*)malloc(sizeof(struct no));
@@ -137,53 +212,50 @@ int inverter_lista(Lista a,Lista *b){
     return 1;
 }
 
+/*
+intercalar listas
+entrada: endereço de uma lista 'a', endereço de uma lista 'b', endereço do endereço de uma lista 'c'
+pré-condição: listas 'a' e 'b' nao estarem vazias e lista 'c' estar vazia
+processo: copia e intercala a primeira com a segunda lista, armazenado a lista resultante na terceira lista
+pós condição: duas listas sao intercaladas e copiadas em outra lista
+saida: 1 se sucesso, 0 se falha
+*/
 int intercalar_listas(Lista a, Lista b, Lista *c){
-    if ((*c)!=NULL)
+    if ((*c)!=NULL || (a==NULL&&b==NULL))
         return 0;
-    Lista aux1 = a;     //criamos o auxiliar que ira percorrer a lista a
-    Lista aux2 = b;     //auxiliar que ira percorrer a lista b
-    Lista aux3 = (struct no*)malloc(sizeof(struct no)); //aloca um no´vo nó na memoria
-    aux3->info = aux1->info;    //copia a informação do primeiro elemento da lista a
+    Lista aux3 = (struct no*)malloc(sizeof(struct no)); //aloca um novo nó na memoria
     *c = aux3;                  //faz a lista c apontar para esse elemento
-    Lista aux4 = (struct no*)malloc(sizeof(struct no));;    //cria um novo nó
-    aux4->info = b->info;       //copia a informação do primeiro elemento de b
-    aux3->prox = aux4;          //faz o primeiro elemento de c apontar para o elemento que foi criado
-    aux1 = aux1->prox;
-    aux2 = aux2->prox;
-    while(aux1!=NULL&&aux2!=NULL){
-        aux3 = (struct no*)malloc(sizeof(struct no));   //aloco um novo nó
-        aux4->prox = aux3;                              //nó anterior aponta para o nó que foi alocado
-        aux3->info = aux1->info;                        //copia a informação da lista a
-        aux4 = (struct no*)malloc(sizeof(struct no));   //aloca um novo nó
-        aux3->prox = aux4;                              //nó anterior aponta pro nó que foi alocado
-        aux4->info = aux2->info;                        //copia a informação da lista b
-        aux1 = aux1->prox;                              //desloca na lista a
-        aux2 = aux2->prox;                              //desloca na lista b
-    }
-    if(aux1 == NULL){
-        if (aux2 == NULL){  //se as duas listas acabaram, ja era, segue a vida
-            return 1;
-        }else{          //se chegou aqui é pq a lista 2 ainda nao acabou
-            while(aux2!=NULL){
-                aux3 = (struct no*)malloc(sizeof(struct no));   //aloco um novo nó
-                aux4->prox = aux3;      //aux4 era o ultimo nó, agora é o aux3
-                aux3->info = aux2->info;    //aux3 recebe informações da lista 2
-                aux4 = aux3;                //atualizo aux4 para ele ser o ultimo elemento de novo
-                aux2 = aux2->prox;          //passando pro prox elemento da lista 2
-            }
+    if (a==NULL){
+        aux3->info = b->info;
+        b=b->prox;
+        while(b!=NULL){
+            aux3->prox = (struct no*)malloc(sizeof(struct no));   //aloca um novo nó na proxima posição
+            aux3 = aux3->prox;
+            aux3->info = b->info;
+            b=b->prox;
         }
-    }else{              //se chegou aqui, é pq a lista 1 ainda nao acabou
-        while(aux1!=NULL){
-            aux3 = (struct no*)malloc(sizeof(struct no));   //aloco um novo nó
-            aux4->prox = aux3;
-            aux3->info = aux1->info;
-            aux4 = aux3;
-            aux1 = aux1->prox;
-        }
+        aux3->prox = NULL;
+        return 1;
     }
+    aux3->info = a->info;
+    a=a->prox;
+    while(a!=NULL||b!=NULL){
+        if (b!=NULL){
+            aux3->prox = (struct no*)malloc(sizeof(struct no));   //aloca um novo nó na proxima posição
+            aux3=aux3->prox;                              //atualiza aux3
+            aux3->info = b->info;                        //copia a informação da lista b
+            b = b->prox;                              //desloca na lista b
+        }
+        if (a!=NULL){
+            aux3->prox = (struct no*)malloc(sizeof(struct no));   //aloco um novo nó na proxima posição
+            aux3 = aux3->prox;                              //atualiza aux3
+            aux3->info = a->info;                        //copia a informação da lista a
+            a = a->prox;                              //desloca na lista a
+        }
+
+    }
+    aux3->prox = NULL;
     return 1;
 
 
 }
-
-
