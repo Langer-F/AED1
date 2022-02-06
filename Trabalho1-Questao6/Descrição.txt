@@ -1,0 +1,6 @@
+Implementar o TAD lista não ordenada de números reais (double) usando alocação dinâmica 
+com encadeamento duplo. Além das operações vistas em sala, o TAD deve contemplar:
+	Remover todos: remove todas as ocorrências de um elemento da lista
+	Remover menor: remove o menor elemento  da lista, retornando seu valor. No caso de empate, deve-se remover a primeira ocorrência encontrada.
+	Inserir na posição: insira o elemento em uma posição indicada. Se a posição não existir na lista, a operação deve indicar falha.
+	Inverter: recebe uma lista L e retorna uma nova lista L2, formada pelos elementos de L na ordem inversa. A lista original não deve ser alterada.
